@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-mar-2012 18:27:17 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojos.MatVeh" table="mat_veh" catalog="cquants_irradius">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pryVeh" class="pojos.PryVeh" fetch="select">
+            <column name="pry_veh" />
+        </many-to-one>
+        <many-to-one name="tipMatVeh" class="pojos.TipMatVeh" fetch="select">
+            <column name="tip_mat_veh" />
+        </many-to-one>
+        <property name="fch" type="calendar">
+            <column name="fch" length="19" />
+        </property>
+        <property name="val" type="string">
+            <column name="val" />
+        </property>
+    </class>
+</hibernate-mapping>

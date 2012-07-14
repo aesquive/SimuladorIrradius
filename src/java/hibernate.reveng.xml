@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="cquants_irradius"/>
+  <table-filter match-name="mat_pry_ind"/>
+  <table-filter match-name="etp_veh"/>
+  <table-filter match-name="map_cal_veh"/>
+  <table-filter match-name="etp_tir_veh"/>
+  <table-filter match-name="mdl_veh"/>
+  <table-filter match-name="pry_veh"/>
+  <table-filter match-name="etp_pry_ind"/>
+  <table-filter match-name="mdl_pry_ind"/>
+  <table-filter match-name="usu_pry_veh"/>
+  <table-filter match-name="dat_veh"/>
+  <table-filter match-name="tip_mat_pry_ind"/>
+  <table-filter match-name="var_veh"/>
+  <table-filter match-name="etp_mat_pry_ind"/>
+  <table-filter match-name="dat_pry_ind"/>
+  <table-filter match-name="usu"/>
+  <table-filter match-name="tip_mat_veh"/>
+  <table-filter match-name="var_pry_ind"/>
+  <table-filter match-name="tip_usu"/>
+  <table-filter match-name="est_pry_veh"/>
+  <table-filter match-name="rep_veh"/>
+  <table-filter match-name="rel_mdl_veh"/>
+  <table-filter match-name="usu_pry_pry_ind"/>
+  <table-filter match-name="est_pry_ind"/>
+  <table-filter match-name="mat_veh"/>
+  <table-filter match-name="usu_mdl_veh"/>
+  <table-filter match-name="tip_mon"/>
+  <table-filter match-name="tip_map_cal_veh"/>
+  <table-filter match-name="pry_pry_ind"/>
+</hibernate-reverse-engineering>

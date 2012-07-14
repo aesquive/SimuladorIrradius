@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-mar-2012 18:27:17 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojos.EstPryVeh" table="est_pry_veh" catalog="cquants_irradius">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="desEstPry" type="string">
+            <column name="des_est_pry" />
+        </property>
+        <set name="usuPryVehs" inverse="true">
+            <key>
+                <column name="est_pry_veh" />
+            </key>
+            <one-to-many class="pojos.UsuPryVeh" />
+        </set>
+        <set name="usuMdlVehs" inverse="true">
+            <key>
+                <column name="est_mdl_veh" />
+            </key>
+            <one-to-many class="pojos.UsuMdlVeh" />
+        </set>
+    </class>
+</hibernate-mapping>

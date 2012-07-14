@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-mar-2012 18:27:17 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojos.MdlPryInd" table="mdl_pry_ind" catalog="cquants_irradius">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pryPryInd" class="pojos.PryPryInd" fetch="select">
+            <column name="pry_pry_ind" />
+        </many-to-one>
+        <many-to-one name="usu" class="pojos.Usu" fetch="select">
+            <column name="usu" />
+        </many-to-one>
+        <property name="nomMdl" type="string">
+            <column name="nom_mdl" />
+        </property>
+        <property name="fec" type="calendar">
+            <column name="fec" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

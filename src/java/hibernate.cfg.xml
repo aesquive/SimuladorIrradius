@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cquants_irradius?autoReconnect=true</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.c3p0.acquire_increment">1</property>
+    <property name="hibernate.c3p0.idle_test_period">100</property>
+    <property name="hibernate.c3p0.max_size">100</property>
+    <property name="hibernate.c3p0.max_statements">100</property>
+    <property name="hibernate.c3p0.min_size">5</property>
+    <property name="hibernate.c3p0.timeout">100</property>
+    <mapping resource="pojos/MdlPryInd.hbm.xml"/>
+    <mapping resource="pojos/RelMdlVeh.hbm.xml"/>
+    <mapping resource="pojos/DatPryInd.hbm.xml"/>
+    <mapping resource="pojos/PryVeh.hbm.xml"/>
+    <mapping resource="pojos/VarVeh.hbm.xml"/>
+    <mapping resource="pojos/EstPryInd.hbm.xml"/>
+    <mapping resource="pojos/EtpMatPryInd.hbm.xml"/>
+    <mapping resource="pojos/UsuMdlVeh.hbm.xml"/>
+    <mapping resource="pojos/TipMatVeh.hbm.xml"/>
+    <mapping resource="pojos/UsuPryVeh.hbm.xml"/>
+    <mapping resource="pojos/MdlVeh.hbm.xml"/>
+    <mapping resource="pojos/MatPryInd.hbm.xml"/>
+    <mapping resource="pojos/EtpTirVeh.hbm.xml"/>
+    <mapping resource="pojos/EtpPryInd.hbm.xml"/>
+    <mapping resource="pojos/VarPryInd.hbm.xml"/>
+    <mapping resource="pojos/TipMon.hbm.xml"/>
+    <mapping resource="pojos/RepVeh.hbm.xml"/>
+    <mapping resource="pojos/PryPryInd.hbm.xml"/>
+    <mapping resource="pojos/TipUsu.hbm.xml"/>
+    <mapping resource="pojos/UsuPryPryInd.hbm.xml"/>
+    <mapping resource="pojos/TipMatPryInd.hbm.xml"/>
+    <mapping resource="pojos/MapCalVeh.hbm.xml"/>
+    <mapping resource="pojos/Usu.hbm.xml"/>
+    <mapping resource="pojos/EtpVeh.hbm.xml"/>
+    <mapping resource="pojos/MatVeh.hbm.xml"/>
+    <mapping resource="pojos/DatVeh.hbm.xml"/>
+    <mapping resource="pojos/EstPryVeh.hbm.xml"/>
+    <mapping resource="pojos/TipMapCalVeh.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

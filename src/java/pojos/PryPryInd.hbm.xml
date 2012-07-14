@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-mar-2012 18:27:17 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojos.PryPryInd" table="pry_pry_ind" catalog="cquants_irradius">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="estPryInd" class="pojos.EstPryInd" fetch="select">
+            <column name="est_pry_ind" />
+        </many-to-one>
+        <property name="nomPry" type="string">
+            <column name="nom_pry" />
+        </property>
+        <property name="fch" type="calendar">
+            <column name="fch" length="19" />
+        </property>
+        <set name="etpPryInds" inverse="true">
+            <key>
+                <column name="pry_pry_ind" />
+            </key>
+            <one-to-many class="pojos.EtpPryInd" />
+        </set>
+        <set name="mdlPryInds" inverse="true">
+            <key>
+                <column name="pry_pry_ind" />
+            </key>
+            <one-to-many class="pojos.MdlPryInd" />
+        </set>
+        <set name="datPryInds" inverse="true">
+            <key>
+                <column name="pry_pry_ind" />
+            </key>
+            <one-to-many class="pojos.DatPryInd" />
+        </set>
+        <set name="matPryInds" inverse="true">
+            <key>
+                <column name="pry_pry_ind" />
+            </key>
+            <one-to-many class="pojos.MatPryInd" />
+        </set>
+        <set name="usuPryPryInds" inverse="true">
+            <key>
+                <column name="pry_pry_ind" />
+            </key>
+            <one-to-many class="pojos.UsuPryPryInd" />
+        </set>
+        <set name="etpMatPryInds" inverse="true">
+            <key>
+                <column name="pry_pry_ind" />
+            </key>
+            <one-to-many class="pojos.EtpMatPryInd" />
+        </set>
+    </class>
+</hibernate-mapping>

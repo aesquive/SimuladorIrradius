@@ -1,0 +1,1208 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Simulador</title>
+    </h:head>
+
+    <h:body>
+
+        <h:form id="principal">
+            <h:message style="color: red ;font-size: large" id="mensaje" for="principal"/>
+            <p:tabView  >
+
+                <!-- mapas de calor-->
+
+                <p:tab id="mapasCalor" title="Mapas de Calor">
+
+                    <c:if test="#{generalSimulacion.estanCalculadosMapas}">
+                        <p:tabView>
+
+                            <p:tab id="mapaPrecioTasa" title="Precio Promedio - Tasa de Interes">
+
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="IRR VEHICULO "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.eneadaBeanPrecioTasa.tirProyecto}"/>
+
+                                    <h:outputText value="#{generalSimulacion.eneadaBeanPrecioTasa.parm1}"/>
+                                    <p:inputText title="Valor" required="true" readonly="true" id="nombre" value="#{generalSimulacion.eneadaBeanPrecioTasa.input1}">
+                                    </p:inputText>
+                                    <h:outputText value="#{generalSimulacion.eneadaBeanPrecioTasa.parm2}"/>
+                                    <p:inputText title="Valor" required="true" id="nombre2" readonly="true" value="#{generalSimulacion.eneadaBeanPrecioTasa.input2}">
+                                    </p:inputText>
+
+                                </h:panelGrid>
+
+                                <h:panelGrid rowClasses="1">
+                                    <p:dataTable var ="Mapa" value="#{generalSimulacion.eneadaBeanPrecioTasa.listaEneada}" style="width: 1000px" scrollRows="150" scrollable="true" liveScroll="true"
+                                                 scrollHeight="350">
+
+                                        <p:column id="Columna1"  style="width: 75px">
+
+                                            <h:outputText  value="#{Mapa.des}"/>
+
+
+                                        </p:column>
+                                        <p:column id="Columna2"  style="width: 75px">
+                                            <h:outputText rendered="#{Mapa.col0 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa.val0}"/>
+                                            <h:outputText rendered="#{Mapa.col0 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa.val0}"/>
+                                            <h:outputText rendered="#{Mapa.col0 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa.val0}"/>
+                                            <h:outputText rendered="#{Mapa.col0 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa.val0}"/>
+                                            <h:outputText rendered="#{Mapa.col0 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa.val0}"/>
+                                            <h:outputText rendered="#{Mapa.col0 == -3}" value="#{Mapa.val0}"/>
+
+
+                                        </p:column>
+                                        <p:column id="Columna3"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa.col1 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa.val1}"/>
+                                            <h:outputText rendered="#{Mapa.col1 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa.val1}"/>
+                                            <h:outputText rendered="#{Mapa.col1 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa.val1}"/>
+                                            <h:outputText rendered="#{Mapa.col1 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa.val1}"/>
+                                            <h:outputText rendered="#{Mapa.col1 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa.val1}"/>
+                                            <h:outputText rendered="#{Mapa.col1 == -3}" value="#{Mapa.val1}"/>
+
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna4" style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa.col2 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa.val2}"/>
+                                            <h:outputText rendered="#{Mapa.col2 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa.val2}"/>
+                                            <h:outputText rendered="#{Mapa.col2 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa.val2}"/>
+                                            <h:outputText rendered="#{Mapa.col2 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa.val2}"/>
+                                            <h:outputText rendered="#{Mapa.col2 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa.val2}"/>
+                                            <h:outputText rendered="#{Mapa.col2 == -3}" value="#{Mapa.val2}"/>
+
+                                        </p:column>
+                                        <p:column id="Columna5"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa.col3 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa.val3}"/>
+                                            <h:outputText rendered="#{Mapa.col3 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa.val3}"/>
+                                            <h:outputText rendered="#{Mapa.col3 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa.val3}"/>
+                                            <h:outputText rendered="#{Mapa.col3 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa.val3}"/>
+                                            <h:outputText rendered="#{Mapa.col3 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa.val3}"/>
+                                            <h:outputText rendered="#{Mapa.col3 == -3}" value="#{Mapa.val3}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna6"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa.col4 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa.val4}"/>
+                                            <h:outputText rendered="#{Mapa.col4 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa.val4}"/>
+                                            <h:outputText rendered="#{Mapa.col4 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa.val4}"/>
+                                            <h:outputText rendered="#{Mapa.col4 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa.val4}"/>
+                                            <h:outputText rendered="#{Mapa.col4 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa.val4}"/>
+                                            <h:outputText rendered="#{Mapa.col4 == -3}" value="#{Mapa.val4}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna7"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa.col5 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa.val5}"/>
+                                            <h:outputText rendered="#{Mapa.col5 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa.val5}"/>
+                                            <h:outputText rendered="#{Mapa.col5 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa.val5}"/>
+                                            <h:outputText rendered="#{Mapa.col5 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa.val5}"/>
+                                            <h:outputText rendered="#{Mapa.col5 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa.val5}"/>
+                                            <h:outputText rendered="#{Mapa.col5 == -3}" value="#{Mapa.val0}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna8" style="width: 75px">
+
+
+                                            <h:outputText rendered="#{Mapa.col6 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa.val6}"/>
+                                            <h:outputText rendered="#{Mapa.col6 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa.val6}"/>
+                                            <h:outputText rendered="#{Mapa.col6 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa.val6}"/>
+                                            <h:outputText rendered="#{Mapa.col6 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa.val6}"/>
+                                            <h:outputText rendered="#{Mapa.col6 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa.val6}"/>
+                                            <h:outputText rendered="#{Mapa.col6 == -3}" value="#{Mapa.val6}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna9"  style="width: 75px">
+
+
+                                            <h:outputText rendered="#{Mapa.col7 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa.val7}"/>
+                                            <h:outputText rendered="#{Mapa.col7 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa.val7}"/>
+                                            <h:outputText rendered="#{Mapa.col7 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa.val7}"/>
+                                            <h:outputText rendered="#{Mapa.col7 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa.val7}"/>
+                                            <h:outputText rendered="#{Mapa.col7 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa.val7}"/>
+                                            <h:outputText rendered="#{Mapa.col7 == -3}" value="#{Mapa.val7}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna10"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa.col8 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa.val8}"/>
+                                            <h:outputText rendered="#{Mapa.col8 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa.val8}"/>
+                                            <h:outputText rendered="#{Mapa.col8 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa.val8}"/>
+                                            <h:outputText rendered="#{Mapa.col8 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa.val8}"/>
+                                            <h:outputText rendered="#{Mapa.col8 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa.val8}"/>
+                                            <h:outputText rendered="#{Mapa.col8 == -3}" value="#{Mapa.val8}"/>
+
+
+
+
+                                        </p:column>
+
+
+
+
+                                    </p:dataTable>
+
+                                </h:panelGrid>
+
+                            </p:tab>
+
+                            <p:tab id="mapaApaTasa" title="Porcentaje Apalancamiento - Tasa de Interes">
+
+
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="IRR VEHICULO "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.eneadaBeanApaTasa.tirProyecto}"/>
+
+                                    <h:outputText value="#{generalSimulacion.eneadaBeanApaTasa.parm1}"/>
+                                    <p:inputText title="Valor" required="true" readonly="true" id="nombre1" value="#{generalSimulacion.eneadaBeanApaTasa.input1}">
+                                    </p:inputText>
+                                    <h:outputText value="#{generalSimulacion.eneadaBeanApaTasa.parm2}"/>
+                                    <p:inputText title="Valor" required="true" id="nombre21" readonly="true" value="#{generalSimulacion.eneadaBeanApaTasa.input2}">
+                                    </p:inputText>
+
+                                </h:panelGrid>
+
+                                <h:panelGrid rowClasses="1">
+                                    <p:dataTable var ="Mapa2" value="#{generalSimulacion.eneadaBeanApaTasa.listaEneada}" style="width: 1000px" scrollRows="150" scrollable="true" liveScroll="true"
+                                                 scrollHeight="350">
+
+                                        <p:column id="Columna11"  style="width: 75px">
+
+                                            <h:outputText  value="#{Mapa2.des}"/>
+
+
+                                        </p:column>
+
+                                        <p:column id="Columna12"  style="width: 75px">
+                                            <h:outputText rendered="#{Mapa2.col0 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa2.val0}"/>
+                                            <h:outputText rendered="#{Mapa2.col0 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa2.val0}"/>
+                                            <h:outputText rendered="#{Mapa2.col0 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa2.val0}"/>
+                                            <h:outputText rendered="#{Mapa2.col0 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa2.val0}"/>
+                                            <h:outputText rendered="#{Mapa2.col0 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa2.val0}"/>
+                                            <h:outputText rendered="#{Mapa2.col0 == -3}" value="#{Mapa2.val0}"/>
+
+
+                                        </p:column>
+                                        <p:column id="Columna13"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa2.col1 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa2.val1}"/>
+                                            <h:outputText rendered="#{Mapa2.col1 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa2.val1}"/>
+                                            <h:outputText rendered="#{Mapa2.col1 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa2.val1}"/>
+                                            <h:outputText rendered="#{Mapa2.col1 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa2.val1}"/>
+                                            <h:outputText rendered="#{Mapa2.col1 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa2.val1}"/>
+                                            <h:outputText rendered="#{Mapa2.col1 == -3}" value="#{Mapa2.val1}"/>
+
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna14" style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa2.col2 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa2.val2}"/>
+                                            <h:outputText rendered="#{Mapa2.col2 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa2.val2}"/>
+                                            <h:outputText rendered="#{Mapa2.col2 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa2.val2}"/>
+                                            <h:outputText rendered="#{Mapa2.col2 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa2.val2}"/>
+                                            <h:outputText rendered="#{Mapa2.col2 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa2.val2}"/>
+                                            <h:outputText rendered="#{Mapa2.col2 == -3}" value="#{Mapa2.val2}"/>
+
+                                        </p:column>
+                                        <p:column id="Columna15"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa2.col3 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa2.val3}"/>
+                                            <h:outputText rendered="#{Mapa2.col3 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa2.val3}"/>
+                                            <h:outputText rendered="#{Mapa2.col3 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa2.val3}"/>
+                                            <h:outputText rendered="#{Mapa2.col3 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa2.val3}"/>
+                                            <h:outputText rendered="#{Mapa2.col3 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa2.val3}"/>
+                                            <h:outputText rendered="#{Mapa2.col3 == -3}" value="#{Mapa2.val3}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna16"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa2.col4 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa2.val4}"/>
+                                            <h:outputText rendered="#{Mapa2.col4 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa2.val4}"/>
+                                            <h:outputText rendered="#{Mapa2.col4 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa2.val4}"/>
+                                            <h:outputText rendered="#{Mapa2.col4 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa2.val4}"/>
+                                            <h:outputText rendered="#{Mapa2.col4 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa2.val4}"/>
+                                            <h:outputText rendered="#{Mapa2.col4 == -3}" value="#{Mapa2.val4}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna17"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa2.col5 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa2.val5}"/>
+                                            <h:outputText rendered="#{Mapa2.col5 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa2.val5}"/>
+                                            <h:outputText rendered="#{Mapa2.col5 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa2.val5}"/>
+                                            <h:outputText rendered="#{Mapa2.col5 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa2.val5}"/>
+                                            <h:outputText rendered="#{Mapa2.col5 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa2.val5}"/>
+                                            <h:outputText rendered="#{Mapa2.col5 == -3}" value="#{Mapa2.val0}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna18" style="width: 75px">
+
+
+                                            <h:outputText rendered="#{Mapa2.col6 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa2.val6}"/>
+                                            <h:outputText rendered="#{Mapa2.col6 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa2.val6}"/>
+                                            <h:outputText rendered="#{Mapa2.col6 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa2.val6}"/>
+                                            <h:outputText rendered="#{Mapa2.col6 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa2.val6}"/>
+                                            <h:outputText rendered="#{Mapa2.col6 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa2.val6}"/>
+                                            <h:outputText rendered="#{Mapa2.col6 == -3}" value="#{Mapa2.val6}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna19"  style="width: 75px">
+
+
+                                            <h:outputText rendered="#{Mapa2.col7 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa2.val7}"/>
+                                            <h:outputText rendered="#{Mapa2.col7 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa2.val7}"/>
+                                            <h:outputText rendered="#{Mapa2.col7 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa2.val7}"/>
+                                            <h:outputText rendered="#{Mapa2.col7 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa2.val7}"/>
+                                            <h:outputText rendered="#{Mapa2.col7 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa2.val7}"/>
+                                            <h:outputText rendered="#{Mapa2.col7 == -3}" value="#{Mapa2.val7}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna20"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa2.col8 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa2.val8}"/>
+                                            <h:outputText rendered="#{Mapa2.col8 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa2.val8}"/>
+                                            <h:outputText rendered="#{Mapa2.col8 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa2.val8}"/>
+                                            <h:outputText rendered="#{Mapa2.col8 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa2.val8}"/>
+                                            <h:outputText rendered="#{Mapa2.col8 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa2.val8}"/>
+                                            <h:outputText rendered="#{Mapa2.col8 == -3}" value="#{Mapa2.val8}"/>
+
+
+
+
+                                        </p:column>
+
+
+
+                                    </p:dataTable>
+
+                                </h:panelGrid>
+
+                            </p:tab>
+
+                            <p:tab id="mapaPrecioApa" title="Precio Promedio - Porcentaje Apalancamiento">
+
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="IRR VEHICULO "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.eneadaBeanPrecioApa.tirProyecto}"/>
+
+                                    <h:outputText value="#{generalSimulacion.eneadaBeanPrecioApa.parm1}"/>
+                                    <p:inputText title="Valor" required="true" readonly="true" id="nombre3" value="#{generalSimulacion.eneadaBeanPrecioApa.input1}">
+                                    </p:inputText>
+                                    <h:outputText value="#{generalSimulacion.eneadaBeanPrecioApa.parm2}"/>
+                                    <p:inputText title="Valor" required="true" id="nombre23" readonly="true" value="#{generalSimulacion.eneadaBeanPrecioApa.input2}">
+                                    </p:inputText>
+
+                                </h:panelGrid>
+
+                                <h:panelGrid rowClasses="1">
+                                    <p:dataTable var ="Mapa3" value="#{generalSimulacion.eneadaBeanPrecioApa.listaEneada}" style="width: 1000px" scrollRows="150" scrollable="true" liveScroll="true"
+                                                 scrollHeight="350">
+
+                                        <p:column id="Columna21"  style="width: 75px">
+
+                                            <h:outputText  value="#{Mapa3.des}"/>
+
+
+                                        </p:column>
+
+                                        <p:column id="Columna22"  style="width: 75px">
+                                            <h:outputText rendered="#{Mapa3.col0 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa3.val0}"/>
+                                            <h:outputText rendered="#{Mapa3.col0 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa3.val0}"/>
+                                            <h:outputText rendered="#{Mapa3.col0 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa3.val0}"/>
+                                            <h:outputText rendered="#{Mapa3.col0 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa3.val0}"/>
+                                            <h:outputText rendered="#{Mapa3.col0 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa3.val0}"/>
+                                            <h:outputText rendered="#{Mapa3.col0 == -3}" value="#{Mapa3.val0}"/>
+
+
+                                        </p:column>
+                                        <p:column id="Columna23"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa3.col1 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa3.val1}"/>
+                                            <h:outputText rendered="#{Mapa3.col1 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa3.val1}"/>
+                                            <h:outputText rendered="#{Mapa3.col1 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa3.val1}"/>
+                                            <h:outputText rendered="#{Mapa3.col1 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa3.val1}"/>
+                                            <h:outputText rendered="#{Mapa3.col1 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa3.val1}"/>
+                                            <h:outputText rendered="#{Mapa3.col1 == -3}" value="#{Mapa3.val1}"/>
+
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna24" style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa3.col2 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa3.val2}"/>
+                                            <h:outputText rendered="#{Mapa3.col2 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa3.val2}"/>
+                                            <h:outputText rendered="#{Mapa3.col2 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa3.val2}"/>
+                                            <h:outputText rendered="#{Mapa3.col2 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa3.val2}"/>
+                                            <h:outputText rendered="#{Mapa3.col2 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa3.val2}"/>
+                                            <h:outputText rendered="#{Mapa3.col2 == -3}" value="#{Mapa3.val2}"/>
+
+                                        </p:column>
+                                        <p:column id="Columna25"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa3.col3 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa3.val3}"/>
+                                            <h:outputText rendered="#{Mapa3.col3 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa3.val3}"/>
+                                            <h:outputText rendered="#{Mapa3.col3 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa3.val3}"/>
+                                            <h:outputText rendered="#{Mapa3.col3 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa3.val3}"/>
+                                            <h:outputText rendered="#{Mapa3.col3 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa3.val3}"/>
+                                            <h:outputText rendered="#{Mapa3.col3 == -3}" value="#{Mapa3.val3}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna26"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa3.col4 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa3.val4}"/>
+                                            <h:outputText rendered="#{Mapa3.col4 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa3.val4}"/>
+                                            <h:outputText rendered="#{Mapa3.col4 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa3.val4}"/>
+                                            <h:outputText rendered="#{Mapa3.col4 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa3.val4}"/>
+                                            <h:outputText rendered="#{Mapa3.col4 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa3.val4}"/>
+                                            <h:outputText rendered="#{Mapa3.col4 == -3}" value="#{Mapa3.val4}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna27"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa3.col5 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa3.val5}"/>
+                                            <h:outputText rendered="#{Mapa3.col5 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa3.val5}"/>
+                                            <h:outputText rendered="#{Mapa3.col5 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa3.val5}"/>
+                                            <h:outputText rendered="#{Mapa3.col5 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa3.val5}"/>
+                                            <h:outputText rendered="#{Mapa3.col5 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa3.val5}"/>
+                                            <h:outputText rendered="#{Mapa3.col5 == -3}" value="#{Mapa3.val0}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna28" style="width: 75px">
+
+
+                                            <h:outputText rendered="#{Mapa3.col6 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa3.val6}"/>
+                                            <h:outputText rendered="#{Mapa3.col6 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa3.val6}"/>
+                                            <h:outputText rendered="#{Mapa3.col6 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa3.val6}"/>
+                                            <h:outputText rendered="#{Mapa3.col6 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa3.val6}"/>
+                                            <h:outputText rendered="#{Mapa3.col6 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa3.val6}"/>
+                                            <h:outputText rendered="#{Mapa3.col6 == -3}" value="#{Mapa3.val6}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna29"  style="width: 75px">
+
+
+                                            <h:outputText rendered="#{Mapa3.col7 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa3.val7}"/>
+                                            <h:outputText rendered="#{Mapa3.col7 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa3.val7}"/>
+                                            <h:outputText rendered="#{Mapa3.col7 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa3.val7}"/>
+                                            <h:outputText rendered="#{Mapa3.col7 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa3.val7}"/>
+                                            <h:outputText rendered="#{Mapa3.col7 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa3.val7}"/>
+                                            <h:outputText rendered="#{Mapa3.col7 == -3}" value="#{Mapa3.val7}"/>
+
+
+
+                                        </p:column>
+                                        <p:column id="Columna30"  style="width: 75px">
+
+                                            <h:outputText rendered="#{Mapa3.col8 == -2}" style="font-weight:bold;background-color: red" value="#{Mapa3.val8}"/>
+                                            <h:outputText rendered="#{Mapa3.col8 == -1}" style="font-weight:bold;background-color: orange" value="#{Mapa3.val8}"/>
+                                            <h:outputText rendered="#{Mapa3.col8 == 0}" style="font-weight:bold;background-color: yellow" value="#{Mapa3.val8}"/>
+                                            <h:outputText rendered="#{Mapa3.col8 == 1}" style="font-weight:bold;background-color: green" value="#{Mapa3.val8}"/>
+                                            <h:outputText rendered="#{Mapa3.col8 == 2}" style="font-weight:bold;background-color: cornflowerblue" value="#{Mapa3.val8}"/>
+                                            <h:outputText rendered="#{Mapa3.col8 == -3}" value="#{Mapa3.val8}"/>
+
+
+
+
+                                        </p:column>
+
+
+
+
+                                    </p:dataTable>
+
+                                </h:panelGrid>
+
+                            </p:tab>
+
+                        </p:tabView>
+                    </c:if>
+                    <c:if test="#{!generalSimulacion.estanCalculadosMapas}">
+                        <h:commandButton value="Calcular Mapas de Calor" action="#{generalSimulacion.calcularMapas}"/>
+                    </c:if>
+                </p:tab>
+
+
+                <!-- premisas de inversion-->
+                <p:tab id="premisasInversion" title="Cascada de Distribucion">
+                    <center>
+                        <h:panelGrid columns="1">
+                            <h:commandButton action="#{generalSimulacion.inversionSimulacionBean.procesarSimulacion}" value="Comenzar Simulacion"/>
+                        </h:panelGrid>
+                    </center>
+                    <h:panelGrid width="100%" columns="2">
+                        <p:column>
+                            <div id="descripciones"  >
+                                <h:panelGrid columns="2">
+                                    <h:outputText  style="border: solid cadetblue" value="IRR Minima"/>
+                                    <h:panelGrid columns="2" width="150px">
+                                        <p:inputText style="height: 80%;width: 35px" id="sli1" value="#{generalSimulacion.inversionSimulacionBean.tir0}"/>
+                                        <p:slider for="sli1" style=" width:150px"/>
+                                    </h:panelGrid>
+                                    <h:outputText style="position: relative;left: 5%" value="  % Distribucion al LP             "/>
+                                    <h:panelGrid columns="2" width="150px">
+                                        <p:inputText style="height: 80%;width: 35px" id="sli2" value="#{generalSimulacion.inversionSimulacionBean.inv0}"/>
+                                        <p:slider for="sli2" style="width:150px"/>
+                                    </h:panelGrid>
+
+                                    <h:outputText style="position: relative;left: 5%" value="  % Distribucion al GP"/>
+                                    <p:inputText value="#{generalSimulacion.inversionSimulacionBean.grl0}" style="height: 80% ; color: blue ; width: 35%" readonly="true"/>
+                                    <h:outputText value=" "/>
+                                    <h:outputText value=" "/>
+
+
+                                    <h:outputText style="border: solid goldenrod" value="IRR 1a Cascada"/>
+                                    <h:panelGrid columns="2">
+                                        <p:inputText id="sli3" style="height: 80%;width: 35px" value="#{generalSimulacion.inversionSimulacionBean.tir1}"/>
+                                        <p:slider for="sli3" style=" width:150px"/>
+                                    </h:panelGrid>
+
+                                    <h:outputText style="position: relative;left: 5%" value="  % Distribucion al LP"/>
+                                    <h:panelGrid columns="2">
+                                        <p:inputText id="sli4" style="height: 80%;width: 35px" value="#{generalSimulacion.inversionSimulacionBean.inv1}"/>
+                                        <p:slider for="sli4" style=" width:150px"/>
+                                    </h:panelGrid>
+
+                                    <h:outputText style="position: relative;left: 5%" value="  % Distribucion al GP"/>
+                                    <p:inputText value="#{generalSimulacion.inversionSimulacionBean.grl1}" style="height: 80% ; color: blue ; width: 35%" readonly="true" />
+                                    <h:outputText value=" "/>
+                                    <h:outputText value=" "/>
+
+                                    <h:outputText style="border: solid tan" value="IRR Meta e Inversionista"/>
+                                    <h:panelGrid columns="2">
+                                        <p:inputText id="sli5" style="height: 80%;width: 35px" value="#{generalSimulacion.inversionSimulacionBean.tir2}"/>
+                                        <p:slider for="sli5" style=" width:150px"/>
+                                    </h:panelGrid>
+
+                                    <h:outputText style="position: relative;left: 5%" value="  % Distribucion al LP"/>
+                                    <h:panelGrid columns="2">
+                                        <p:inputText id="sli6" style="height: 80%;width: 35px" value="#{generalSimulacion.inversionSimulacionBean.inv2}"/>
+                                        <p:slider for="sli6" style=" width:150px"/>
+                                    </h:panelGrid>
+
+                                    <h:outputText style="position: relative;left: 5%" value="  % Distribucion al GP"/>
+                                    <p:inputText value="#{generalSimulacion.inversionSimulacionBean.grl2}" style="height: 80% ; color: blue ; width: 35%" readonly="true" />
+                                    <h:outputText value=" "/>
+                                    <h:outputText value=" "/>
+
+                                    <h:outputText rendered="#{generalSimulacion.inversionSimulacionBean.act3}" style="border: solid seagreen" value="Excedentes sobre IRR"/>
+                                    <h:panelGrid rendered="#{generalSimulacion.inversionSimulacionBean.act3}" columns="2">
+                                        <p:inputText id="sli7" style="height: 80%;width: 35px" value="#{generalSimulacion.inversionSimulacionBean.tir3}"/>
+                                        <p:slider for="sli7" style=" width:150px"/>
+                                    </h:panelGrid>
+
+                                    <h:outputText rendered="#{generalSimulacion.inversionSimulacionBean.act3}" style="position: relative;left: 5%" value="  % Distribucion al LP"/>
+                                    <h:panelGrid rendered="#{generalSimulacion.inversionSimulacionBean.act3}" columns="2">
+                                        <p:inputText id="sli8" style="height: 80%;width: 35px" value="#{generalSimulacion.inversionSimulacionBean.inv3}"/>
+                                        <p:slider for="sli8" style=" width:150px"/>
+                                    </h:panelGrid>
+
+
+                                    <h:outputText rendered="#{generalSimulacion.inversionSimulacionBean.act3}" style="position: relative;left: 5%" value="  % Distribucion al GP"/>
+                                    <p:inputText rendered="#{generalSimulacion.inversionSimulacionBean.act3}" value="#{generalSimulacion.inversionSimulacionBean.grl3}" style="height: 80% ; color: blue ; width: 35%" readonly="true" />
+
+                                </h:panelGrid>
+                            </div>
+                        </p:column>
+                        <p:column>
+                            <div id="tirs">
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="Porcentaje de utilidad IRR Minima "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.inversionSimulacionBean.porcentajeTirMinima}"/>
+                                    <h:outputText value="Porcentaje de utilidad 1a Cascada "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.inversionSimulacionBean.porcentajeTirPrimera}"/>
+                                    <h:outputText value="Porcentaje de utilidad IRR Meta e Inversionista "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.inversionSimulacionBean.porcentajeTirMeta}"/>
+                                </h:panelGrid>
+                                <p:meterGaugeChart   value="#{generalSimulacion.inversionSimulacionBean.tacometro}" />
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="IRR Proyecto"/>
+                                    <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.inversionSimulacionBean.tirPry}"/>
+                                    <h:outputText value="IRR Real a Inversionista"/>
+                                    <h:inputText readonly="true" style="width: 40%;color: red" value="#{generalSimulacion.inversionSimulacionBean.tirInv}"/>
+
+                                    <h:outputText value="Resumen de participacion "/>
+                                    <h:outputText  style="color: red" value=""/>
+                                    <h:outputText value="% Distribucion a Inversionista"/>
+                                    <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.inversionSimulacionBean.porInv}"/>
+                                    <h:outputText value="% Distribucion a General Partner "/>
+                                    <h:inputText readonly="true" style="width: 40%;color: red" value="#{generalSimulacion.inversionSimulacionBean.porGrl}"/>
+                                </h:panelGrid>
+                            </div>
+                        </p:column>
+                    </h:panelGrid>
+
+                </p:tab>
+
+
+
+                <!-- simulacion de ministracion-->
+                <p:tab id="simulacionMinistracion" title="Simulacion Ministracion">
+                    <center>
+                        <h:commandButton action="#{generalSimulacion.simulacionMinistracionBean.simularMinistracion}" value="Comenzar Simulacion"/>
+                    </center>
+                    <h:panelGrid columns="3" width="100%">
+                        <p:column>
+                            <div id="descripcionesMin"  >
+                                <br/>
+                                <h:outputText value="Meses de Ministracion del Credito"/>
+                                <br/>
+                                <br/>
+                                <h:outputText style="position: relative" value="Meses de Pago de Credito"/>
+                                <br/>
+                                <br/>
+                                <h:outputText style="position: relative"  value="Meses de Revolvencia"/>
+                                <br/>
+                                <br/>
+                                <h:message style="color: red ;font-size: large" for="mensaje"/>
+                            </div>
+                        </p:column>
+                        <p:column>
+                            <div id="valoresMin" >
+                                <h:panelGrid columns="2" width="190px">
+                                    <p:inputText style="height: 80%;width: 35px" id="min1" value="#{generalSimulacion.simulacionMinistracionBean.mesesMinistracion}"/>
+                                    <p:slider for="min1" maxValue="60" style=" width:150px"/>
+                                </h:panelGrid>
+                                <br/>
+                                <h:panelGrid columns="2" width="190px">
+                                    <p:inputText style="height: 80%;width: 35px" id="min2" value="#{generalSimulacion.simulacionMinistracionBean.mesesPago}"/>
+                                    <p:slider for="min2" maxValue="60" style=" width:150px"/>
+                                </h:panelGrid>
+                                <br/>
+                                <p:inputText value="#{generalSimulacion.simulacionMinistracionBean.mesesRevolvencia}" style="color: blue ; width: 15%" readonly="true"/>
+
+                            </div>
+
+                        </p:column>
+                        <p:column>
+                            <div id="tirs" >
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="IRR de Vehiculo"/>
+                                    <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.simulacionMinistracionBean.tirPry}"/>
+                                    <h:outputText value="IRR de Inversionista"/>
+                                    <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.simulacionMinistracionBean.tirInv}"/>
+                                    <h:outputText value=""/>
+                                    <h:outputText style="width: 40%;color: red" value=""/>
+
+                                    <h:outputText value="Resumen de participacion "/>
+                                    <h:outputText  style="color: red" value=""/>
+                                    <h:outputText value="% Distribucion a Inversionista"/>
+                                    <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.simulacionMinistracionBean.porInv}"/>
+                                    <h:outputText value="% Distribucion a General Partner "/>
+                                    <h:inputText readonly="true" style="width: 40%;color: red" value="#{generalSimulacion.simulacionMinistracionBean.porGrl}"/>
+                                </h:panelGrid>
+                            </div>
+                        </p:column>
+
+                    </h:panelGrid>
+
+
+
+                    <center>
+                        <h:panelGrid columns="1"   width="50%">
+                            <p:meterGaugeChart value="#{generalSimulacion.simulacionMinistracionBean.tacometro}" />
+
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="1"   width="65%">
+                            <p:column >
+                                <div id="valoresSimG">
+                                    <br/>
+                                    <p:lineChart  value="#{generalSimulacion.simulacionMinistracionBean.grafica}" 
+                                                  legendPosition="n" style="height: 400px" minX="0" title="Distribucion del Credito"  xaxisLabel="Tiempo" yaxisLabel="Numero Proyecto" 
+                                                  minY="0" maxY="100"/>
+
+                                </div>
+                            </p:column>
+                        </h:panelGrid>
+                        <h:panelGrid columns="1" width="30%">
+
+                            <p:column>
+                                <p:dataTable var="tirSimu" value="#{generalSimulacion.simulacionMinistracionBean.tirProyectos}" >
+                                    <p:column>
+                                        <f:facet name="faces">
+                                            Proyecto
+                                        </f:facet>
+                                        <h:outputText value="#{tirSimu.registroDescripcion}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="faces">
+                                            IRR
+                                        </f:facet>
+                                        <h:outputText value="#{tirSimu.registroIngreso}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:column>
+
+
+                        </h:panelGrid>
+
+                    </center>
+
+                </p:tab>
+
+                <!-- indicadores clave-->
+                <p:tab id="indicadoresClave" title="Indicadores Clave">
+                    <p:tabView>
+                        <p:tab title="Balance">
+                            <p:accordionPanel var="acord"   value="#{generalSimulacion.graficasBalance.rutas}">
+                                <p:tab title="#{acord.nombre}">
+                                    <center>
+                                        <h:panelGrid columns="2" width="50%">
+                                            <p:lineChart  value="#{acord.grafica}" 
+                                                          legendPosition="s" style="height: 400px" minX="#{acord.minX}" maxX="#{acord.maxX}" title="#{acord.nombre}"  xaxisLabel="Tiempo" yaxisLabel="Valor" 
+                                                          />
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="1" width="60%">
+                                            <p:dataTable var="celda" value="#{acord.matriz}">
+
+                                                <p:column>
+                                                    <f:facet name="faces">
+                                                        Fecha
+                                                    </f:facet>
+                                                    <h:outputText value="#{celda.x}"/>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <f:facet name="faces">
+                                                        Valor
+                                                    </f:facet>
+                                                    <h:outputText value="#{celda.y}"/>
+                                                </p:column>
+
+
+                                            </p:dataTable>
+                                        </h:panelGrid>
+
+                                    </center>
+                                </p:tab>
+                            </p:accordionPanel>
+                        </p:tab>
+
+                        <p:tab title="Financieras">
+                            <p:accordionPanel var="acord2" value="#{generalSimulacion.graficasFinancieras.rutas}">
+                                <p:tab title="#{acord2.nombre}">
+                                    <center>
+                                        <h:panelGrid columns="1" width="60%">
+                                            <p:lineChart  value="#{acord2.grafica}" 
+                                                          legendPosition="s" style="height: 400px" minX="#{acord2.minX}" maxX="#{acord2.maxX}" title="#{acord2.nombre}"  xaxisLabel="Tiempo" yaxisLabel="Valor" 
+                                                          />
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="1" width="60%">
+
+                                            <p:dataTable var="celda2" value="#{acord2.matriz}">
+
+                                                <p:column>
+                                                    <f:facet name="faces">
+                                                        Fecha
+                                                    </f:facet>
+                                                    <h:outputText value="#{celda2.x}"/>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <f:facet name="faces">
+                                                        Valor
+                                                    </f:facet>
+                                                    <h:outputText value="#{celda2.y}"/>
+                                                </p:column>
+
+
+                                            </p:dataTable>
+                                        </h:panelGrid>
+
+                                    </center>
+                                </p:tab>
+                            </p:accordionPanel>
+                        </p:tab>
+
+                        <p:tab title="Parametricas">
+
+                            <p:accordionPanel var="acord3" value="#{generalSimulacion.graficasParametricas.rutas}">
+                                <p:tab title="#{acord3.nombre}">
+                                    <center>
+                                        <h:panelGrid columns="2" width="60%">
+                                            <p:lineChart  value="#{acord3.grafica}" 
+                                                          legendPosition="s" style="height: 400px" minX="#{acord3.minX}" maxX="#{acord3.maxX}" title="#{acord3.nombre}"  xaxisLabel="Tiempo" yaxisLabel="Valor" 
+                                                          />
+
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="1" width="60%">
+                                            <p:dataTable var="celda3" value="#{acord3.matriz}">
+
+                                                <p:column>
+                                                    <f:facet name="faces">
+                                                        Fecha
+                                                    </f:facet>
+                                                    <h:outputText value="#{celda3.x}"/>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <f:facet name="faces">
+                                                        Valor
+                                                    </f:facet>
+                                                    <h:outputText value="#{celda3.y}"/>
+                                                </p:column>
+
+
+                                            </p:dataTable>
+                                        </h:panelGrid>
+                                    </center>
+
+                                </p:tab>
+                            </p:accordionPanel>
+                        </p:tab>
+
+                    </p:tabView>
+
+                </p:tab>
+
+                <p:tab id="vela" title="Grafica de Vela">
+
+                    <p:ohlcChart candleStick="true"    value="#{generalSimulacion.candleBean.graficaVela}"  />
+                </p:tab>
+
+
+                <p:tab id="simulacionCredito" title="Simulacion de la Estructura del Capital">
+                    <center>
+                        <h:panelGrid columns="1">
+                            <h:outputText value="#{generalSimulacion.simulacionCapital.leyendaProbabilidad}" style="color:red ; font-size: x-large"/>
+                            <br/>
+                            <h:commandButton action="#{generalSimulacion.simulacionCapital.simulacionCapital}" value="Comenzar Simulacion"/>
+                        </h:panelGrid>
+                    </center>
+                    <h:panelGrid width="100%" columns="2">
+                        <p:column> 
+                            <h:panelGrid columns="2" width="100%">
+                                <h:outputText value="Capital del inversionista (miles)"/>
+                                <p:inputText value="#{generalSimulacion.simulacionCapital.capitalInversionista}"/>
+                            </h:panelGrid> 
+                            <br/>
+                            <p:dataTable  value="#{generalSimulacion.simulacionCapital.capitalProyecto}" var="capitalProyecto">
+                                <p:column>
+                                    <h:outputText value="#{capitalProyecto.registroDescripcion}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText readonly="true" value="#{capitalProyecto.registroIngreso}"/>
+                                </p:column>
+
+                            </p:dataTable>
+
+                            <br/>
+                            <h:panelGrid columns="2" width="100%">
+                                <h:outputText value="% de Apalancamiento"/>
+                                <p:inputText value="#{generalSimulacion.simulacionCapital.porcentajeApalancamiento}"/>
+                                <br/>
+                                <h:outputText value=" "/>
+                                <h:outputText value="% de Credito Puente"/>
+                                <p:inputText value="#{generalSimulacion.simulacionCapital.porcentajeCreditoPuente}"/>
+                                <br/>
+                                <h:outputText value=" "/>
+                                <h:outputText value="% de Caja Minima"/>
+                                <p:inputText value="#{generalSimulacion.simulacionCapital.porcentajeCajaMinima}"/>
+                                <br/>
+                                <h:outputText value=" "/>
+                                <h:outputText value="% Tasa Anual de Credito Puente"/>
+                                <p:inputText value="#{generalSimulacion.simulacionCapital.tasaInteres}"/>
+                                <br/>
+
+
+                                <h:outputText value=" "/>
+                                <h:outputText value="Valor Promedio de la Vivienda"/>
+                                <p:inputText id="valViv"  disabled="#{generalSimulacion.simulacionCapital.valorProyectoModificado ==true}" value="#{generalSimulacion.simulacionCapital.valorPromedioVivienda}"/>
+                                <p:ajax event="keyup" listener="#{generalSimulacion.simulacionCapital.modificadoValor}" update="tablapry"/>
+                                <br/>
+                            </h:panelGrid>
+                            <p:dataTable id="tablapry" rowKey="#{valorPromedioViv.registroDescripcion}" selectionMode="single" value="#{generalSimulacion.simulacionCapital.valorPromedioProyecto}" var="valorPromedioViv">
+
+                                <p:column>
+                                    <h:outputText value="#{valorPromedioViv.registroDescripcion}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="valorProyecto"  disabled="#{generalSimulacion.simulacionCapital.valorGeneralModificado ==true}" value="#{valorPromedioViv.registroIngreso}"/>
+
+                                </p:column>
+
+                            </p:dataTable>
+                            <br/>
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Sales Noise"/>
+                                <p:inputText value="#{generalSimulacion.simulacionCapital.probabilidadIncumplimiento}"/>
+                                <h:outputText value=" "/>
+                                <h:outputText value=" "/>
+                                <h:outputText value="% de Recuperacion"/>
+                                <p:inputText value="#{generalSimulacion.simulacionCapital.porcentajeCasasIncumplimiento}"/>
+                            </h:panelGrid>
+                        </p:column>
+                        <p:column>
+                            <div id="tirs">
+                                <h:panelGrid width="100%" columns="2">
+                                    <h:outputText value="Porcentaje de utilidad IRR Minima "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.simulacionCapital.porcentajeTirMinima}"/>
+                                    <h:outputText value="Porcentaje de utilidad 1a Cascada "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.simulacionCapital.porcentajeTirPrimera}"/>
+                                    <h:outputText value="Porcentaje de utilidad IRR Meta e Inversionista "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.simulacionCapital.porcentajeTirMeta}"/>
+                                </h:panelGrid>
+                                <p:meterGaugeChart   value="#{generalSimulacion.simulacionCapital.tacometro}" />
+                                <center>
+                                    <h:outputText rendered="#{generalSimulacion.simulacionCapital.noViable}" value="ESCENARIO NO FACTIBLE" style="color:red ; font-size: x-large"/>
+                                </center>
+                                <br/>
+                                <h:panelGrid columns="2">
+
+                                    <h:outputText value="Linea de Credito Revolvente del Vehiculo"/>
+                                    <h:inputText value="#{generalSimulacion.simulacionCapital.lineaCredito}" style="color: red" readonly="true"/>
+                                    <h:outputText value="IRR Proyecto"/>
+                                    <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.simulacionCapital.tirPry}"/>
+                                    <h:outputText value="IRR Real a Inversionista"/>
+                                    <h:inputText readonly="true" style="width: 40%;color: red" value="#{generalSimulacion.simulacionCapital.tirInv}"/>
+
+                                    <h:outputText value="Resumen de participacion "/>
+                                    <h:outputText  style="color: red" value=""/>
+                                    <h:outputText value="% Distribucion a Inversionista"/>
+                                    <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.simulacionCapital.porInv}"/>
+                                    <h:outputText value="% Distribucion a General Partner "/>
+                                    <h:inputText readonly="true" style="width: 40%;color: red" value="#{generalSimulacion.simulacionCapital.porGrl}"/>
+                                </h:panelGrid>
+                            </div>
+                        </p:column>
+                    </h:panelGrid>
+
+                    <center>
+                        <div id="botones" style="position: relative;bottom: 2%; right: 0%">
+                            <p:ohlcChart candleStick="true"   value="#{generalSimulacion.simulacionCapital.vela.graficaVela}"  />
+
+                        </div> 
+                    </center>
+
+
+                </p:tab>
+
+                <p:tab title="Simulador Total">
+                    <center>
+                        <h:form id="simulacionTotal">
+
+                            <p:dialog header="Guardar" widgetVar="dlg">
+
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="Nombre : "/>
+                                    <p:inputText value="#{generalSimulacion.simuladorGeneral.nuevoModelo}"/>
+                                    <h:commandButton action="#{generalSimulacion.simuladorGeneral.guardarModelo}" value="Guardar Simulacion"/>
+
+                                </h:panelGrid>
+                            </p:dialog>
+                            <h:panelGrid columns="2">
+                                <h:commandButton id="guardar" action="#{generalSimulacion.simuladorGeneral.simulacionTotal}" value="Comenzar Simulacion General"/>
+                                <h:commandButton type="button"  value="Guardar Simulacion"  onclick="dlg.show()"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="1">
+                                <h:outputText style="color: red;font-size: x-large" value="#{generalSimulacion.simuladorGeneral.leyendaGuardado}"/>
+                            </h:panelGrid>
+                        </h:form>
+                    </center>
+
+                    <p:meterGaugeChart   value="#{generalSimulacion.simuladorGeneral.tacometro}" />
+
+                    <p:lineChart  value="#{generalSimulacion.simuladorGeneral.simulacionMinistracionBean.grafica}" 
+                                  legendPosition="n" style="height: 400px" minX="0" title="Distribucion del Credito"  xaxisLabel="Tiempo" yaxisLabel="Numero Proyecto" 
+                                  minY="0" maxY="100"/>
+
+
+                    <h:panelGrid columns="2">
+
+                        <h:panelGrid width="100%" columns="2">
+                            <h:outputText value="Porcentaje de utilidad IRR Minima "/>
+                            <p:inputText readonly="true" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeTirMinima}"/>
+                            <h:outputText value="Porcentaje de utilidad 1a Cascada "/>
+                            <p:inputText readonly="true" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeTirPrimera}"/>
+                            <h:outputText value="Porcentaje de utilidad IRR Meta e Inversionista "/>
+                            <p:inputText readonly="true" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeTirMeta}"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2">
+
+                            <h:outputText value="Linea de Credito Revolvente del Vehiculo"/>
+                            <h:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.lineaCredito}" style="color: red" readonly="true"/>
+                            <h:outputText value="IRR Proyecto"/>
+                            <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.tirPry}"/>
+                            <h:outputText value="IRR Real a Inversionista"/>
+                            <h:inputText readonly="true" style="width: 40%;color: red" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.tirInv}"/>
+
+                            <h:outputText value="Resumen de participacion "/>
+                            <h:outputText  style="color: red" value=""/>
+                            <h:outputText value="% Distribucion a Inversionista"/>
+                            <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porInv}"/>
+                            <h:outputText value="% Distribucion a General Partner "/>
+                            <h:inputText readonly="true" style="width: 40%;color: red" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porGrl}"/>
+                        </h:panelGrid>
+
+
+                    </h:panelGrid>
+
+                    <center>
+                        <h:outputText rendered="#{generalSimulacion.simuladorGeneral.simulacionCapital.noViable}" value="ESCENARIO NO FACTIBLE" style="color:red ; font-size: x-large"/>
+                        <p:ohlcChart candleStick="true"   value="#{generalSimulacion.simuladorGeneral.simulacionCapital.vela.graficaVela}"  />
+
+
+                    </center>
+
+                    <p:tabView>
+
+                        <p:tab id="premisasInversion" title="Cascada de Distribucion">
+                            <h:panelGrid width="100%" columns="2">
+                                <p:column>
+                                    <div id="descripciones"  >
+                                        <h:panelGrid columns="2">
+                                            <h:outputText  style="border: solid cadetblue" value="IRR Minima"/>
+                                            <h:panelGrid columns="2" width="150px">
+                                                <p:inputText style="height: 80%;width: 35px" id="sli1" value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.tir0}"/>
+                                                <p:slider for="sli1" style=" width:150px"/>
+                                            </h:panelGrid>
+                                            <h:outputText style="position: relative;left: 5%" value="  % Distribucion al LP             "/>
+                                            <h:panelGrid columns="2" width="150px">
+                                                <p:inputText style="height: 80%;width: 35px" id="sli2" value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.inv0}"/>
+                                                <p:slider for="sli2" style="width:150px"/>
+                                            </h:panelGrid>
+
+                                            <h:outputText style="position: relative;left: 5%" value="  % Distribucion al GP"/>
+                                            <p:inputText value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.grl0}" style="height: 80% ; color: blue ; width: 35%" readonly="true"/>
+                                            <h:outputText value=" "/>
+                                            <h:outputText value=" "/>
+
+
+                                            <h:outputText style="border: solid goldenrod" value="IRR 1a Cascada"/>
+                                            <h:panelGrid columns="2">
+                                                <p:inputText id="sli3" style="height: 80%;width: 35px" value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.tir1}"/>
+                                                <p:slider for="sli3" style=" width:150px"/>
+                                            </h:panelGrid>
+
+                                            <h:outputText style="position: relative;left: 5%" value="  % Distribucion al LP"/>
+                                            <h:panelGrid columns="2">
+                                                <p:inputText id="sli4" style="height: 80%;width: 35px" value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.inv1}"/>
+                                                <p:slider for="sli4" style=" width:150px"/>
+                                            </h:panelGrid>
+
+                                            <h:outputText style="position: relative;left: 5%" value="  % Distribucion al GP"/>
+                                            <p:inputText value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.grl1}" style="height: 80% ; color: blue ; width: 35%" readonly="true" />
+                                            <h:outputText value=" "/>
+                                            <h:outputText value=" "/>
+
+                                            <h:outputText style="border: solid tan" value="IRR Meta e Inversionista"/>
+                                            <h:panelGrid columns="2">
+                                                <p:inputText id="sli5" style="height: 80%;width: 35px" value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.tir2}"/>
+                                                <p:slider for="sli5" style=" width:150px"/>
+                                            </h:panelGrid>
+
+                                            <h:outputText style="position: relative;left: 5%" value="  % Distribucion al LP"/>
+                                            <h:panelGrid columns="2">
+                                                <p:inputText id="sli6" style="height: 80%;width: 35px" value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.inv2}"/>
+                                                <p:slider for="sli6" style=" width:150px"/>
+                                            </h:panelGrid>
+
+                                            <h:outputText style="position: relative;left: 5%" value="  % Distribucion al GP"/>
+                                            <p:inputText value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.grl2}" style="height: 80% ; color: blue ; width: 35%" readonly="true" />
+                                            <h:outputText value=" "/>
+                                            <h:outputText value=" "/>
+
+                                            <h:outputText rendered="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.act3}" style="border: solid seagreen" value="Excedentes sobre IRR"/>
+                                            <h:panelGrid rendered="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.act3}" columns="2">
+                                                <p:inputText id="sli7" style="height: 80%;width: 35px" value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.tir3}"/>
+                                                <p:slider for="sli7" style=" width:150px"/>
+                                            </h:panelGrid>
+
+                                            <h:outputText rendered="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.act3}" style="position: relative;left: 5%" value="  % Distribucion al LP"/>
+                                            <h:panelGrid rendered="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.act3}" columns="2">
+                                                <p:inputText id="sli8" style="height: 80%;width: 35px" value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.inv3}"/>
+                                                <p:slider for="sli8" style=" width:150px"/>
+                                            </h:panelGrid>
+
+
+                                            <h:outputText rendered="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.act3}" style="position: relative;left: 5%" value="  % Distribucion al GP"/>
+                                            <p:inputText rendered="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.act3}" value="#{generalSimulacion.simuladorGeneral.inversionSimulacionBean.grl3}" style="height: 80% ; color: blue ; width: 35%" readonly="true" />
+
+                                        </h:panelGrid>
+                                    </div>
+                                </p:column>
+                            </h:panelGrid>
+
+                        </p:tab>
+
+                        <p:tab title="Simulacion Ministracion">
+
+
+                            <h:panelGrid columns="3" width="60%">
+                                <p:column>
+                                    <div id="descripcionesMin"  >
+                                        <br/>
+                                        <h:outputText value="Meses de Ministracion del Credito"/>
+                                        <br/>
+                                        <br/>
+                                        <h:outputText style="position: relative" value="Meses de Pago de Credito"/>
+                                        <br/>
+                                        <br/>
+                                        <h:outputText style="position: relative"  value="Meses de Revolvencia"/>
+                                        <br/>
+                                        <br/>
+                                        <h:message style="color: red ;font-size: large" for="mensaje"/>
+                                    </div>
+                                </p:column>
+                                <p:column>
+                                    <div id="valoresMin" >
+                                        <h:panelGrid columns="2" width="190px">
+                                            <p:inputText style="height: 80%;width: 35px" id="min1" value="#{generalSimulacion.simuladorGeneral.simulacionMinistracionBean.mesesMinistracion}"/>
+                                            <p:slider for="min1" maxValue="60" style=" width:150px"/>
+                                        </h:panelGrid>
+                                        <br/>
+                                        <h:panelGrid columns="2" width="190px">
+                                            <p:inputText style="height: 80%;width: 35px" id="min2" value="#{generalSimulacion.simuladorGeneral.simulacionMinistracionBean.mesesPago}"/>
+                                            <p:slider for="min2" maxValue="60" style=" width:150px"/>
+                                        </h:panelGrid>
+                                        <br/>
+                                        <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionMinistracionBean.mesesRevolvencia}" style="color: blue ; width: 15%" readonly="true"/>
+
+                                    </div>
+
+                                </p:column>
+                                <p:column>
+
+                                    <h:outputText value=" "/>
+                                </p:column>
+
+                            </h:panelGrid>
+
+
+
+
+
+                        </p:tab>
+
+                        <p:tab id="simulacionCredito" title="Simulacion de la Estructura del Capital">
+                            <h:panelGrid width="60%" columns="2">
+                                <p:column> 
+                                    <h:panelGrid columns="2" width="100%">
+                                        <h:outputText value="Capital del inversionista (miles)"/>
+                                        <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.capitalInversionista}"/>
+                                    </h:panelGrid> 
+                                    <br/>
+                                    <h:panelGrid columns="2">
+                                        <p:dataTable  value="#{generalSimulacion.simuladorGeneral.simulacionCapital.capitalProyecto}" var="capitalProyecto">
+                                            <p:column>
+                                                <h:outputText value="#{capitalProyecto.registroDescripcion}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <p:inputText readonly="true" value="#{capitalProyecto.registroIngreso}"/>
+                                            </p:column>
+
+                                        </p:dataTable>
+                                    </h:panelGrid>
+                                    <br/>
+                                    <h:panelGrid columns="2" width="100%">
+                                        <h:outputText value="% de Apalancamiento"/>
+                                        <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeApalancamiento}"/>
+                                        <br/>
+                                        <h:outputText value=" "/>
+                                        <h:outputText value="% de Credito Puente"/>
+                                        <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeCreditoPuente}"/>
+                                        <br/>
+                                        <h:outputText value=" "/>
+                                        <h:outputText value="% de Caja Minima"/>
+                                        <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeCajaMinima}"/>
+                                        <br/>
+                                        <h:outputText value=" "/>
+                                        <h:outputText value="% Tasa Anual de Credito Puente"/>
+                                        <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.tasaInteres}"/>
+                                        <br/>
+
+                                        <h:outputText value=" "/>
+                                        <h:outputText value="Valor Promedio de la Vivienda"/>
+                                        <p:inputText id="valViv"  disabled="#{generalSimulacion.simuladorGeneral.simulacionCapital.valorProyectoModificado ==true}" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.valorPromedioVivienda}"/>
+                                        <p:ajax event="keyup" listener="#{generalSimulacion.simuladorGeneral.simulacionCapital.modificadoValor}" update="tablapry"/>
+                                        <br/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2">
+                                        <p:dataTable id="tablapry" rowKey="#{valorPromedioViv.registroDescripcion}" selectionMode="single" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.valorPromedioProyecto}" var="valorPromedioViv">
+
+                                            <p:column>
+                                                <h:outputText value="#{valorPromedioViv.registroDescripcion}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <p:inputText id="valorProyecto"  disabled="#{generalSimulacion.simuladorGeneral.simulacionCapital.valorGeneralModificado ==true}" value="#{valorPromedioViv.registroIngreso}"/>
+
+                                            </p:column>
+
+                                        </p:dataTable>
+                                    </h:panelGrid>
+                                    <br/>
+                                    <h:panelGrid columns="2">
+                                        <h:outputText value="Sales Noise"/>
+                                        <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.probabilidadIncumplimiento}"/>
+                                        <h:outputText value=" "/>
+                                        <h:outputText value=" "/>
+                                        <h:outputText value="% de Recuperacion"/>
+                                        <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeCasasIncumplimiento}"/>
+                                    </h:panelGrid>
+                                </p:column>
+                                <p:column>
+                                    <div id="tirs">
+
+                                    </div>
+                                </p:column>
+                            </h:panelGrid>
+
+
+
+                        </p:tab>
+
+                    </p:tabView>
+
+                </p:tab>
+
+
+
+            </p:tabView>
+
+
+
+
+        </h:form>
+    </h:body>
+</html>
+

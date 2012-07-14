@@ -1,0 +1,110 @@
+ <p:tab id="simulacionCredito" title="Simulacion de la Estructura del Capital">
+                    <center>
+                        <h:panelGrid columns="1">
+                            <h:outputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.leyendaProbabilidad}" style="color:red ; font-size: x-large"/>
+                            <br/>
+                            <h:commandButton action="#{generalSimulacion.simuladorGeneral.simulacionCapital.simulacionCapital}" value="Comenzar Simulacion"/>
+                        </h:panelGrid>
+                    </center>
+                    <h:panelGrid width="100%" columns="2">
+                        <p:column> 
+                            <h:panelGrid columns="2" width="100%">
+                                <h:outputText value="Capital del inversionista (miles)"/>
+                                <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.capitalInversionista}"/>
+                            </h:panelGrid> 
+                            <br/>
+                            <p:dataTable  value="#{generalSimulacion.simuladorGeneral.simulacionCapital.capitalProyecto}" var="capitalProyecto">
+                                <p:column>
+                                    <h:outputText value="#{capitalProyecto.registroDescripcion}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText value="#{capitalProyecto.registroIngreso}"/>
+                                </p:column>
+
+                            </p:dataTable>
+
+                            <br/>
+                            <h:panelGrid columns="2" width="100%">
+                                <h:outputText value="% de Apalancamiento"/>
+                                <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeApalancamiento}"/>
+                                <br/>
+                                <h:outputText value=" "/>
+                                <h:outputText value="% de Credito Puente"/>
+                                <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeCreditoPuente}"/>
+                                <br/>
+                                <h:outputText value=" "/>
+                                <h:outputText value="% de Caja Minima"/>
+                                <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeCajaMinima}"/>
+                                <br/>
+
+                                <h:outputText value=" "/>
+                                <h:outputText value="Valor Promedio de la Vivienda"/>
+                                <p:inputText id="valViv"  disabled="#{generalSimulacion.simuladorGeneral.simulacionCapital.valorProyectoModificado ==true}" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.valorPromedioVivienda}"/>
+                                <p:ajax event="keyup" listener="#{generalSimulacion.simuladorGeneral.simulacionCapital.modificadoValor}" update="tablapry"/>
+                                <br/>
+                            </h:panelGrid>
+                            <p:dataTable id="tablapry" rowKey="#{valorPromedioViv.registroDescripcion}" selectionMode="single" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.valorPromedioProyecto}" var="valorPromedioViv">
+
+                                <p:column>
+                                    <h:outputText value="#{valorPromedioViv.registroDescripcion}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="valorProyecto"  disabled="#{generalSimulacion.simuladorGeneral.simulacionCapital.valorGeneralModificado ==true}" value="#{valorPromedioViv.registroIngreso}"/>
+
+                                </p:column>
+
+                            </p:dataTable>
+                            <br/>
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Sales Noise"/>
+                                <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.probabilidadIncumplimiento}"/>
+                                <h:outputText value=" "/>
+                                <h:outputText value=" "/>
+                                <h:outputText value="% de Recuperacion"/>
+                                <p:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeCasasIncumplimiento}"/>
+                            </h:panelGrid>
+                        </p:column>
+                        <p:column>
+                            <div id="tirs">
+                                <h:panelGrid width="100%" columns="2">
+                                    <h:outputText value="Porcentaje de utilidad IRR Minima "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeTirMinima}"/>
+                                    <h:outputText value="Porcentaje de utilidad 1a Cascada "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeTirPrimera}"/>
+                                    <h:outputText value="Porcentaje de utilidad IRR Meta e Inversionista "/>
+                                    <p:inputText readonly="true" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porcentajeTirMeta}"/>
+                                </h:panelGrid>
+                                <p:meterGaugeChart   value="#{generalSimulacion.simuladorGeneral.simulacionCapital.tacometro}" />
+                                <center>
+                                    <h:outputText rendered="#{generalSimulacion.simuladorGeneral.simulacionCapital.noViable}" value="ESCENARIO NO FACTIBLE" style="color:red ; font-size: x-large"/>
+                                </center>
+                                <br/>
+                                <h:panelGrid columns="2">
+
+                                    <h:outputText value="Linea de Credito Revolvente del Vehiculo"/>
+                                    <h:inputText value="#{generalSimulacion.simuladorGeneral.simulacionCapital.lineaCredito}" style="color: red" readonly="true"/>
+                                    <h:outputText value="IRR Proyecto"/>
+                                    <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.tirPry}"/>
+                                    <h:outputText value="IRR Real a Inversionista"/>
+                                    <h:inputText readonly="true" style="width: 40%;color: red" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.tirInv}"/>
+
+                                    <h:outputText value="Resumen de participacion "/>
+                                    <h:outputText  style="color: red" value=""/>
+                                    <h:outputText value="% Distribucion a Inversionista"/>
+                                    <h:inputText readonly="true"  style="width: 40%;color: red" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porInv}"/>
+                                    <h:outputText value="% Distribucion a General Partner "/>
+                                    <h:inputText readonly="true" style="width: 40%;color: red" value="#{generalSimulacion.simuladorGeneral.simulacionCapital.porGrl}"/>
+                                </h:panelGrid>
+                            </div>
+                        </p:column>
+                    </h:panelGrid>
+
+                    <center>
+                        <div id="botones" style="position: relative;bottom: 2%; right: 0%">
+                            <p:ohlcChart candleStick="true"   value="#{generalSimulacion.simuladorGeneral.simulacionCapital.vela.graficaVela}"  />
+
+                        </div> 
+                    </center>
+
+
+                </p:tab>
